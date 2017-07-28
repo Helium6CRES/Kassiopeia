@@ -1,3 +1,8 @@
+#include "LMCGlobalsDeclaration.hh"  // pls addition
+#include "LMCGlobalsDefinition.hh"  // pls addition
+
+
+
 #include "KSRoot.h"
 #include "KSRunMessage.h"
 #include "KSEventMessage.h"
@@ -269,6 +274,8 @@ namespace Kassiopeia
 
     void KSRoot::Execute( KSSimulation* aSimulation )
     {
+
+
         fSimulation = aSimulation;
 
         vector< KSRunModifier* >* staticRunModifiers  = fSimulation->GetStaticRunModifiers();
@@ -336,6 +343,7 @@ namespace Kassiopeia
             fDefaultGSLErrorHandler = NULL;
         }
 
+
         //reset signal handling
         signal(SIGINT, SIG_DFL );
         signal(SIGTERM, SIG_DFL );
@@ -343,6 +351,7 @@ namespace Kassiopeia
 
         fSimulation->Deactivate();
         Deactivate();
+
 
         for(unsigned int i=0; i<staticRunModifiers->size(); i++)
         {
@@ -367,6 +376,7 @@ namespace Kassiopeia
         };
 
 
+
         fSimulation->Deinitialize();
         Deinitialize();
         fSimulation = NULL;
@@ -376,8 +386,50 @@ namespace Kassiopeia
         fTrackIndex = 0;
         fStepIndex = 0;
 
+
         return;
     }
+
+
+
+
+    void WakeAfterEvent(unsigned TotalEvents, unsigned EventsSoFar)
+    {
+    	fEventInProgress = false;
+        if( TotalEvents == EventsSoFar-1 )
+          {
+          fRunInProgress = false;
+          fKassReadyCondition.notify_one();
+          }
+        fDigitizerCondition.notify_one();  // unlock
+        printf("Kass is waking after event\n");
+        return;
+    }
+
+
+
+    bool ReceivedEventStartCondition()
+    {
+      fKassEventReady = true;
+      fFalseStartKassiopeia = false;
+      fDigitizerCondition.notify_one();  // unlock if still locked.
+      if( fWaitBeforeEvent )
+	{
+
+    	fKassReadyCondition.notify_one();
+        std::unique_lock< std::mutex >tLock( fMutex );
+        fPreEventCondition.wait( tLock );
+        fKassEventReady = false;
+        t_old = 0.;  // reset time on digitizer.
+        return true;
+    }
+    return true; // check this.  should return true if no wait.
+    }
+
+
+
+
+
 
     void KSRoot::ExecuteRun()
     {
@@ -423,7 +475,18 @@ namespace Kassiopeia
             fEvent->ParentRunId() = fRun->GetRunId();
 
             // execute event
+
+            /*
+            printf("Kass is waiting for event trigger.\n");
+            if (ReceivedEventStartCondition())
+            {
+            printf("Kass got the event trigger\n"); //getchar(); // pls
+            }
+            */
+
             ExecuteEvent();
+
+//            WakeAfterEvent(fRun->GetTotalEvents(), fSimulation->GetEvents()); // pls
 
             // update run
             fRun->TotalEvents() += 1;

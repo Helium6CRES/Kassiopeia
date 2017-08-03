@@ -476,17 +476,17 @@ namespace Kassiopeia
 
             // execute event
 
-            /*
+
             printf("Kass is waiting for event trigger.\n");
             if (ReceivedEventStartCondition())
             {
             printf("Kass got the event trigger\n"); //getchar(); // pls
             }
-            */
+
 
             ExecuteEvent();
 
-//            WakeAfterEvent(fRun->GetTotalEvents(), fSimulation->GetEvents()); // pls
+            WakeAfterEvent(fRun->GetTotalEvents(), fSimulation->GetEvents()); // pls
 
             // update run
             fRun->TotalEvents() += 1;

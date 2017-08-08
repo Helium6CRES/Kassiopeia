@@ -40,6 +40,11 @@ namespace Kassiopeia
                 std::vector< KSParticle >* intermediateParticleStates
             ) const = 0;
 
+            virtual void GetInterpolatedParticleState(
+            		const double aTime,
+            		KSParticle& interpolatedParticleState
+            		) const = 0;
+
             //we are forced to use a static function because this is accessed
             //as a callback from a c-function  (gsl error handler)
             //this callback is not thread safe. However, that being said,

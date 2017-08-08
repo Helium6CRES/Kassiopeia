@@ -60,6 +60,18 @@ namespace Kassiopeia
         return;
     }
 
+
+    void KSRootTrajectory::GetInterpolatedParticleState( const double aTime, KSParticle& interpolatedParticleState ) const
+    {
+        if( fTrajectory == NULL )
+        {
+            trajmsg( eError ) << "<" << GetName() << "> cannot interpolate trajectory with no trajectory set" << eom;
+        }
+        fTrajectory->GetInterpolatedParticleState( aTime, interpolatedParticleState );
+        return;
+    }
+
+
     void KSRootTrajectory::SetTrajectory( KSTrajectory* aTrajectory )
     {
         if( fTrajectory != NULL )

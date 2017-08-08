@@ -172,6 +172,7 @@ set( BINDINGS_HEADER_FILES
     Simulation/Include/KSRootEventModifierBuilder.h
     Simulation/Include/KSRootRunModifierBuilder.h
     Simulation/Include/KSRootSurfaceNavigatorBuilder.h
+    ../../../Source/Kassiopeia/LMCCyclotronRadiationExtractorBuilder.hh
     Simulation/Include/KSRootTerminatorBuilder.h
     Simulation/Include/KSRootWriterBuilder.h
     Simulation/Include/KSRootBuilder.h
@@ -381,6 +382,7 @@ set( BINDINGS_SOURCE_FILES
     Simulation/Source/KSRootEventModifierBuilder.cxx
     Simulation/Source/KSRootRunModifierBuilder.cxx
     Simulation/Source/KSRootSurfaceNavigatorBuilder.cxx
+    ../../../Source/Kassiopeia/LMCCyclotronRadiationExtractorBuilder.cc
     Simulation/Source/KSRootTerminatorBuilder.cxx
     Simulation/Source/KSRootWriterBuilder.cxx
     Simulation/Source/KSRootBuilder.cxx

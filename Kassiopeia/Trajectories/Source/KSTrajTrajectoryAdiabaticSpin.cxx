@@ -293,6 +293,14 @@ namespace Kassiopeia
         }
     }
 
+
+    void KSTrajTrajectoryAdiabaticSpin::GetInterpolatedParticleState( const double aTime, KSParticle& interpolatedParticleState ) const
+    {
+            trajmsg( eError ) << "<" << GetName() << "> not interpolating adiabaticspin trajectory." << eom;
+
+    }
+
+
     void KSTrajTrajectoryAdiabaticSpin::Differentiate(double aTime, const KSTrajAdiabaticSpinParticle& aValue, KSTrajAdiabaticSpinDerivative& aDerivative ) const
     {
         KThreeVector tVelocity = aValue.GetVelocity();

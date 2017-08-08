@@ -292,6 +292,14 @@ namespace Kassiopeia
         }
     }
 
+
+    void KSTrajTrajectoryElectric::GetInterpolatedParticleState( const double aTime, KSParticle& interpolatedParticleState ) const
+    {
+            trajmsg( eError ) << "<" << GetName() << "> not interpolating electric trajectory." << eom;
+
+    }
+
+
     void KSTrajTrajectoryElectric::Differentiate(double aTime, const KSTrajElectricParticle& aValue, KSTrajElectricDerivative& aDerivative ) const
     {
         KThreeVector tVelocity = aValue.GetVelocity();

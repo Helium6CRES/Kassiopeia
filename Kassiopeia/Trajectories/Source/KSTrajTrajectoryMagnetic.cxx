@@ -292,6 +292,14 @@ namespace Kassiopeia
         }
     }
 
+
+    void KSTrajTrajectoryMagnetic::GetInterpolatedParticleState( const double aTime, KSParticle& interpolatedParticleState ) const
+    {
+            trajmsg( eError ) << "<" << GetName() << "> not interpolating magnetic trajectory." << eom;
+
+    }
+
+
     void KSTrajTrajectoryMagnetic::Differentiate(double aTime, const KSTrajMagneticParticle& aValue, KSTrajMagneticDerivative& aDerivative ) const
     {
         KThreeVector tVelocity = aValue.GetVelocity();

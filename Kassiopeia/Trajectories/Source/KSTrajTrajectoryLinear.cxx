@@ -89,4 +89,12 @@ namespace Kassiopeia
         intermediateParticleStates->push_back(aFinalParticle);
     }
 
+
+    void KSTrajTrajectoryLinear::GetInterpolatedParticleState( const double aTime, KSParticle& interpolatedParticleState ) const
+    {
+            trajmsg( eError ) << "<" << GetName() << "> not interpolating linear trajectory." << eom;
+
+    }
+
+
 }

@@ -293,6 +293,14 @@ namespace Kassiopeia
         }
     }
 
+
+    void KSTrajTrajectoryExactTrapped::GetInterpolatedParticleState( const double aTime, KSParticle& interpolatedParticleState ) const
+    {
+            trajmsg( eError ) << "<" << GetName() << "> not interpolating exacttrapped trajectory." << eom;
+
+    }
+
+
     void KSTrajTrajectoryExactTrapped::Differentiate(double aTime, const KSTrajExactTrappedParticle& aValue, KSTrajExactTrappedDerivative& aDerivative ) const
     {
         KThreeVector tVelocity = aValue.GetVelocity();

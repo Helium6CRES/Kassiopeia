@@ -303,6 +303,14 @@ namespace Kassiopeia
         }
     }
 
+
+    void KSTrajTrajectoryExactSpin::GetInterpolatedParticleState( const double aTime, KSParticle& interpolatedParticleState ) const
+    {
+            trajmsg( eError ) << "<" << GetName() << "> not interpolating exactspin trajectory." << eom;
+
+    }
+
+
     void KSTrajTrajectoryExactSpin::Differentiate(double aTime, const KSTrajExactSpinParticle& aValue, KSTrajExactSpinDerivative& aDerivative ) const
     {
         KThreeVector tVelocity = aValue.GetVelocity();

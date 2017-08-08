@@ -417,6 +417,27 @@ namespace Kassiopeia
         }
     }
 
+
+    void KSTrajTrajectoryAdiabatic::GetInterpolatedParticleState( const double aTime, KSParticle& interpolatedParticleState ) const
+    {
+
+    	double anInitialTime = fInitialParticle.GetTime();
+    	double tTimeStep = aTime - anInitialTime;
+    	if ( fInterpolator )
+    	{
+//    		printf("interpolating\n");
+			fInterpolator->Interpolate(anInitialTime, *fIntegrator, *this, fInitialParticle, fFinalParticle, tTimeStep, fIntermediateParticle );
+			fIntermediateParticle.PushTo( interpolatedParticleState );
+			return;
+    	}
+    	else
+    	{
+            trajmsg( eError ) << "<" << GetName() << "> cannot interpolate trajectory with no interpolator set" << eom;
+    	}
+
+    }
+
+
     void KSTrajTrajectoryAdiabatic::Differentiate(double aTime, const KSTrajAdiabaticParticle& aValue, KSTrajAdiabaticDerivative& aDerivative ) const
     {
         //force the cached calculation of magnetic field and gradient combined

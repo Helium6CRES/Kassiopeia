@@ -50,6 +50,7 @@ namespace Kassiopeia
     }
     void KSRootSpaceNavigator::ExecuteNavigation( const KSParticle& aNavigationParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const
     {
+
         if( fSpaceNavigator == NULL )
         {
             navmsg( eError ) << "<" << GetName() << "> cannot execute navigation with no space navigator set" << eom;
@@ -167,6 +168,8 @@ namespace Kassiopeia
 
     void KSRootSpaceNavigator::ExecuteNavigation()
     {
+
+
         ExecuteNavigation( *fNavigationParticle, *fFinalParticle, *fParticleQueue );
         fFinalParticle->ReleaseLabel( fStep->SpaceNavigationName() );
 

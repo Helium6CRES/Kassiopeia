@@ -62,6 +62,7 @@ namespace Kassiopeia
             void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep );
             void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const;
             void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const;
+            void GetInterpolatedParticleState(const double aTime, KSParticle& interpolatedParticleState ) const;
 
             //********************
             //exact term interface

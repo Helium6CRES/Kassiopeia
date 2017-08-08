@@ -21,6 +21,7 @@
 #include "KSRootSpaceNavigator.h"
 #include "KSRootSurfaceInteraction.h"
 #include "KSRootSurfaceNavigator.h"
+#include "LMCCyclotronRadiationExtractor.hh"
 #include "KSRootTerminator.h"
 #include "KSRootWriter.h"
 #include "KSRootStepModifier.h"
@@ -44,6 +45,8 @@
 
 using namespace std;
 using namespace katrin;
+using namespace locust;
+
 
 namespace Kassiopeia
 {
@@ -70,6 +73,7 @@ namespace Kassiopeia
             fRootSpaceNavigator( new KSRootSpaceNavigator() ),
             fRootSurfaceInteraction( new KSRootSurfaceInteraction() ),
             fRootSurfaceNavigator( new KSRootSurfaceNavigator() ),
+            fCyclotronRadiationExtractor( new locust::CyclotronRadiationExtractor() ),
             fRootTerminator( new KSRootTerminator() ),
             fRootWriter( new KSRootWriter() ),
             fRootStepModifier( new KSRootStepModifier() ),
@@ -135,6 +139,10 @@ namespace Kassiopeia
         fRootSurfaceNavigator->SetStep( fStep );
         fToolbox.Add(fRootSurfaceNavigator);
 
+        fCyclotronRadiationExtractor->SetName( "cyclotron_radiation_extractor" );
+        fCyclotronRadiationExtractor->SetTrajectory( fRootTrajectory );
+        fToolbox.Add(fCyclotronRadiationExtractor);
+
         fRootTerminator->SetName( "root_terminator" );
         fRootTerminator->SetStep( fStep );
         fToolbox.Add(fRootTerminator);
@@ -176,6 +184,7 @@ namespace Kassiopeia
             fRootSpaceNavigator( new KSRootSpaceNavigator() ),
             fRootSurfaceInteraction( new KSRootSurfaceInteraction() ),
             fRootSurfaceNavigator( new KSRootSurfaceNavigator() ),
+            fCyclotronRadiationExtractor( new locust::CyclotronRadiationExtractor() ),
             fRootTerminator( new KSRootTerminator() ),
             fRootWriter( new KSRootWriter() ),
             fRootStepModifier( new KSRootStepModifier() ),
@@ -240,6 +249,10 @@ namespace Kassiopeia
         fRootSurfaceNavigator->SetName( "root_surface_navigator" );
         fRootSurfaceNavigator->SetStep( fStep );
         fToolbox.Add(fRootSurfaceNavigator);
+
+        fCyclotronRadiationExtractor->SetName( "cyclotron_radiation_extractor" );
+        fCyclotronRadiationExtractor->SetTrajectory( fRootTrajectory );
+        fToolbox.Add(fCyclotronRadiationExtractor);
 
         fRootTerminator->SetName( "root_terminator" );
         fRootTerminator->SetStep( fStep );

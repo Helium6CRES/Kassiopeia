@@ -24,6 +24,7 @@ set( SIMULATION_HEADER_BASENAMES
     KSRootSpaceNavigator.h
     KSRootSurfaceNavigator.h
     ../../../../Source/Kassiopeia/LMCCyclotronRadiationExtractor.hh
+    ../../../../Source/Core/LMCParticle.hh
     KSRootTerminator.h
     KSRootWriter.h
     KSRoot.h
@@ -61,6 +62,7 @@ set( SIMULATION_SOURCE_BASENAMES
     KSRootSpaceNavigator.cxx
     KSRootSurfaceNavigator.cxx
     ../../../../Source/Kassiopeia/LMCCyclotronRadiationExtractor.cc
+    ../../../../Source/Core/LMCParticle.cc
     KSRootTerminator.cxx
     KSRootWriter.cxx
     KSRoot.cxx
